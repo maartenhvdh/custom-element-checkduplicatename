@@ -3,7 +3,7 @@
     class="en js csstransforms csstransforms3d csstransitions">
 
 <head>
-    <meta http-equiv="body-Type" body="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title> Custom Element - Accessibility Checker</title>
     <!-- Kentico Custom elements API-->
     <link rel="stylesheet" href="custom-element.css" />
@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/rxjs@6.4.0/bundles/rxjs.umd.min.js"></script>
     <script type="text/javascript"
@@ -77,16 +76,14 @@
             });
         });
 
-
         function giveFeedback(items) {
-            
             var result = "";
-            if (items.lenght == 0) {
+            if (items.length == 0) {
                 return "No duplicates found";
             }
-            if (items.lenght > 1) {
-                result = "<p>Found " + items.lenght + " duplicates</p>";
-                items.array.forEach(element => {
+            if (items.length > 1) {
+                result = "<p>Found " + items.length + " duplicates</p>";
+                items.forEach(element => {
                     result += "<p>" + element.system.name + "</p>";
                 });
             }
