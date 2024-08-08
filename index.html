@@ -79,7 +79,7 @@
                 result = "No duplicates found";
             }
             if (items.length > 1) {
-                result = "<p>Found " + items.length + " duplicates:</p><ol>";
+                result = "<p>Found " + items.length - 1 + " duplicates:</p><ol>";
                 items.forEach(element => {
                     if (itemId === element.system.id) {
                         return;
