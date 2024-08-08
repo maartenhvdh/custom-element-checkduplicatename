@@ -35,7 +35,6 @@
         $(document).ready(function () {
             function processData(response, projectId) {
                 CustomElement.setHeight(140);
-                console.log(response)
                 document.getElementById('result').innerHTML = giveFeedback(response.data.items, projectId);
             }
 
@@ -76,7 +75,6 @@
 
         function giveFeedback(items, projectId) {
             var result = "";
-            console.log(items.length)
             if (items.length == 1) {
                 result = "No duplicates found";
             }
