@@ -38,6 +38,7 @@
         $(document).ready(function () {
             function processData(response) {
                 CustomElement.setHeight(300);
+                console.log(response)
                 document.getElementById('result').innerHTML = giveFeedback(response.data.items);
             }
 
