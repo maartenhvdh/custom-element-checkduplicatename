@@ -32,13 +32,11 @@
     </div>
 
     <script>
-        var h1included = false;
-
         $(document).ready(function () {
-            function processData(response) {
-                CustomElement.setHeight(300);
+            function processData(response, projectId) {
+                CustomElement.setHeight(100);
                 console.log(response)
-                document.getElementById('result').innerHTML = giveFeedback(response.data.items);
+                document.getElementById('result').innerHTML = giveFeedback(response.data.items, projectId);
             }
 
             CustomElement.init((element, _context) => {
@@ -59,7 +57,7 @@
                     .equalsFilter("system.name", _context.item.name)
                     .toPromise()
                     .then(response => {
-                        processData(response)
+                        processData(response, _context.projectId)
                     });
 
                 CustomElement.observeElementChanges(["content"], (changedElementCodenames) => {
@@ -76,16 +74,17 @@
             });
         });
 
-        function giveFeedback(items) {
+        function giveFeedback(items, projectId) {
             var result = "";
             if (items.length == 0) {
                 return "No duplicates found";
             }
             if (items.length > 1) {
-                result = "<p>Found " + items.length + " duplicates</p>";
+                result = "<p>Found " + items.length + " duplicates</p>:<ol>";
                 items.forEach(element => {
-                    result += "<p>" + element.system.name + "</p>";
+                    result += "<li><a href='https://app.kontent.ai/goto/edit-item/item/" + projectId + "/variant/00000000-0000-0000-0000-000000000000/project/" + element.system.id + "' target='_blank'>" + element.system.name + "</a></li>";
                 });
+                result += "</ol>";
             }
             return result;
         }
