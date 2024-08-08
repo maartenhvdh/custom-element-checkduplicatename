@@ -33,9 +33,9 @@
 
     <script>
         $(document).ready(function () {
-            function processData(response, projectId) {
+            function processData(response, projectId, itemId) {
                 CustomElement.setHeight(140);
-                document.getElementById('result').innerHTML = giveFeedback(response.data.items, projectId);
+                document.getElementById('result').innerHTML = giveFeedback(response.data.items, projectId, itemId);
             }
 
             CustomElement.init((element, _context) => {
@@ -56,7 +56,7 @@
                     .equalsFilter("system.name", _context.item.name)
                     .toPromise()
                     .then(response => {
-                        processData(response, _context.projectId)
+                        processData(response, _context.projectId, _context.item.id)
                     });
 
                 CustomElement.observeElementChanges(["content"], (changedElementCodenames) => {
@@ -73,7 +73,7 @@
             });
         });
 
-        function giveFeedback(items, projectId) {
+        function giveFeedback(items, projectId, itemId) {
             var result = "";
             if (items.length == 1) {
                 result = "No duplicates found";
@@ -81,6 +81,9 @@
             if (items.length > 1) {
                 result = "<p>Found " + items.length + " duplicates:</p><ol>";
                 items.forEach(element => {
+                    if (itemId === element.system.id) {
+                        return;
+                    }
                     result += "<li><a style='color: blue; text-decoration: underline;' href='https://app.kontent.ai/goto/edit-item/item/" + element.system.id + "/variant/00000000-0000-0000-0000-000000000000/project/" + projectId + "' target='_blank'>" + element.system.name + " (Title: " + element.elements.title?.value + ")</a></li>";
                 });
                 result += "</ol>";
