@@ -76,8 +76,9 @@
 
         function giveFeedback(items, projectId) {
             var result = "";
+            console.log(items.length)
             if (items.length == 0) {
-                return "No duplicates found";
+                result = "No duplicates found";
             }
             if (items.length > 1) {
                 result = "<p>Found " + items.length + " duplicates:</p><ol>";
