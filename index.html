@@ -80,9 +80,9 @@
                 return "No duplicates found";
             }
             if (items.length > 1) {
-                result = "<p>Found " + items.length + " duplicates</p>:<ol>";
+                result = "<p>Found " + items.length + " duplicates:</p><ol>";
                 items.forEach(element => {
-                    result += "<li><a href='https://app.kontent.ai/goto/edit-item/item/" + projectId + "/variant/00000000-0000-0000-0000-000000000000/project/" + element.system.id + "' target='_blank'>" + element.system.name + "</a></li>";
+                    result += "<li><a href='https://app.kontent.ai/goto/edit-item/project/" + projectId + "/variant/00000000-0000-0000-0000-000000000000/item/" + element.system.id + "' target='_blank'>" + element.system.name + "</a></li>";
                 });
                 result += "</ol>";
             }
